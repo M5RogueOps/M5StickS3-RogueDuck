@@ -7,7 +7,7 @@
  *  ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
  *
  *  =============================================================================
- *  PROJECT   : M5Stack StickC S3 - RogueDuck HID Injector (Cyberpunk CRT Edition)
+ *  PROJECT   : M5Stack Stick S3 - RogueDuck HID Injector (Cyberpunk CRT Edition)
  *  AUTHOR    : @M5RogueOps
  *  COMMUNITY : https://www.ethicalhackersden.org
  *  =============================================================================
