@@ -23,7 +23,7 @@ Built for the **M5Stack Stick S3**, this firmware bypasses the need to carry a l
 
 ## 🛠️ Hardware Requirements
 
-* 1x **M5Stack StickC S3** (or StickC Plus2)
+* 1x **M5Stack Stick S3** (or StickC Plus2)
 * 1x USB-C Data Cable
 
 ---
