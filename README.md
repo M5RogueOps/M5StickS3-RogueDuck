@@ -80,7 +80,9 @@ Plug the Stick S3 into your target hardware.
 
 ## ⌨️ Scripting Syntax
 
-You Can Use A Tool I Created On My Website [[DuckyScript Generator]([https://www.ethicalhackersden.org](https://www.ethicalhackersden.org/p/ducky-script-generator.html)]
+You Can Use A Tool I Created On My Website [[DuckyScript Generator]
+
+[[DuckyScript Generator]([https://www.ethicalhackersden.org/p/ducky-script-generator.html](https://www.ethicalhackersden.org/p/ducky-script-generator.html))]
 
 RogueDuck uses standard DuckyScript 1.0. Create simple text files (`.txt`) using the following syntax:
 
