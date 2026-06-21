@@ -1,9 +1,7 @@
 ```markdown
 # 🦆 ROGUEDUCK // Stealth HID Injector
 
-[![Hardware](https://img.shields.io/badge/Hardware-M5Stack_StickC_S3-orange.svg)](https://docs.m5stack.com/en/core/StickC%20PLUS2)
-[![Framework](https://img.shields.io/badge/Framework-Arduino_Core-blue.svg)](https://www.arduino.cc/)
-[![Community](https://img.shields.io/badge/Community-Ethical_Hackers_Den-green.svg)](#community)
+[![Hardware](https://img.shields.io/badge/Hardware-M5Stack_Stick_S3-orange?style=flat)](https://docs.m5stack.com/en/core/Sticks3) [![Framework](https://img.shields.io/badge/Framework-Arduino_Core-blue?style=flat)](https://www.arduino.cc/) [![Community](https://img.shields.io/badge/Community-Ethical_Hackers_Den-green?style=flat)](#community)
 
 **RogueDuck** is a standalone, covert DuckyScript payload injector disguised as a pocket-sized cyberpunk terminal. 
 
