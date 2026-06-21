@@ -77,6 +77,11 @@ Plug the Stick S3 into your target hardware.
 * The screen will glitch red, lock the terminal, and instantly inject the keystrokes.
 
 ---
+## ⚙️ Payload Generation
+
+Don't want to write your payloads by hand? We built a web-based tool to make vector creation effortless. 
+
+Use the official **[DuckyScript Generator](https://www.ethicalhackersden.org/p/ducky-script-generator.html)** to quickly build, format, and copy your payloads. Once generated, simply connect to the RogueDuck Uplink and paste the script directly into the hardware buffer.
 
 ## ⌨️ Scripting Syntax
 
@@ -92,12 +97,6 @@ ENTER
 DELAY 500
 STRING echo "We are in."
 ENTER
-
-## ⚙️ Payload Generation
-
-Don't want to write your payloads by hand? We built a web-based tool to make vector creation effortless. 
-
-Use the official **[DuckyScript Generator](https://www.ethicalhackersden.org/p/ducky-script-generator.html)** to quickly build, format, and copy your payloads. Once generated, simply connect to the RogueDuck Uplink and paste the script directly into the hardware buffer.
 
 ```
 
