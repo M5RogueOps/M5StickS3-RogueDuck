@@ -46,7 +46,7 @@ Ensure you have the ESP32 board manager installed in your Arduino IDE or Platfor
 
 2. Open the `RogueDuck.ino` file in your Arduino IDE.
 3. In the `Tools` menu, configure your board parameters:
-* **Board:** ESP32S3 Dev Module (or exact M5Stack StickC S3 equivalent)
+* **Board:** ESP32S3 Dev Module (or exact M5Stack Stick S3 equivalent)
 * **USB Mode:** Hardware CDC and JTAG
 * **USB CDC On Boot:** Enabled
 
@@ -64,7 +64,7 @@ Ensure you have the ESP32 board manager installed in your Arduino IDE or Platfor
 Provide power to the Stick S3. The screen will initialize the `[ ROGUEDUCK ]` boot sequence.
 
 * Search for local Wi-Fi networks on your smartphone or secondary device.
-* Connect to **`RogueDuck_Link`** (Default Password: `12345678`).
+* Connect to **`RogueDuck_Sync`** (Default Password: `12345678`).
 * Open a browser and navigate to the gateway: `http://192.168.4.1`.
 * Use the web portal to upload `.txt` scripts, paste raw code, or purge old vectors.
 
