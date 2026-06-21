@@ -7,7 +7,10 @@
 
 **RogueDuck** is a standalone, covert DuckyScript payload injector disguised as a pocket-sized cyberpunk terminal. 
 
-Built for the **M5Stack Stick S3**, this firmware bypasses the need to carry a laptop for payload management. It generates a local Wi-Fi uplink, allowing you to deploy, edit, and purge `.txt` payload vectors directly from your smartphone's browser. Once loaded, execution is handled entirely offline via a hardware-rendered, retro-CRT graphical interface.
+Built for the **M5Stack Stick S3**, this firmware bypasses the need to carry a laptop for payload
+management. It generates a local Wi-Fi uplink, allowing you to deploy, edit, and purge `.txt` payload
+vectors directly from your smartphone's browser. Once loaded, execution is handled entirely offline
+via a hardware-rendered, retro-CRT graphical interface.
 
 ---
 
