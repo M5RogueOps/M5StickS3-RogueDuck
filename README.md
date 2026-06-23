@@ -1,4 +1,4 @@
-```markdown
+
 # 🦆 ROGUEDUCK // Stealth HID Injector
 
 **RogueDuck** is a standalone, covert DuckyScript payload injector disguised as a pocket-sized cyberpunk terminal. 
@@ -41,7 +41,7 @@ Ensure you have the ESP32 board manager installed in your Arduino IDE or Platfor
    ```bash
    git clone [https://github.com/yourusername/RogueDuck.git](https://github.com/yourusername/RogueDuck.git)
 
-```
+
 
 2. Open the `RogueDuck.ino` file in your Arduino IDE.
 3. In the `Tools` menu, configure your board parameters:
