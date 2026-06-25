@@ -1,122 +1,127 @@
 
-# 🦆 ROGUEDUCK // Stealth HID Injector
 
-**RogueDuck** is a standalone, covert DuckyScript payload injector disguised as a pocket-sized cyberpunk terminal. 
+# 🦆 ROGUEDUCK V2
+**Advanced HID Payload Injector for M5Stack StickS3**
 
-Built for the **M5Stack Stick S3**, this firmware bypasses the need to carry a laptop for payload
-management. It generates a local Wi-Fi uplink, allowing you to deploy, edit, and purge `.txt` payload
-vectors directly from your smartphone's browser. Once loaded, execution is handled entirely offline
-via a hardware-rendered, retro-CRT graphical interface.
+```text
+ ██████╗  ██████╗  ██████╗ ██╗   ██╗███████╗██████╗ ██╗   ██╗ ██████╗██╗  ██╗
+ ██╔══██╗██╔═══██╗██╔════╝ ██║   ██║██╔════╝██╔══██╗██║   ██║██╔════╝██║ ██╔╝
+ ██████╔╝██║   ██║██║  ███╗██║   ██║█████╗  ██║  ██║██║   ██║██║     █████╔╝ 
+ ██╔══██╗██║   ██║██║   ██║██║   ██║██╔══╝  ██║  ██║██║   ██║██║     ██╔═██╗ 
+ ██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝███████╗██████╔╝╚██████╔╝╚██████╗██║  ██╗
+ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
+
+```
+
+ROGUEDUCK V2 is a custom, tactical firmware that transforms the M5Stack StickS3 into a covert, dual-network BadUSB tool. It features a complete mobile-first web interface, on-the-fly DuckyScript parsing, cloud-payload fetching, and a cyberpunk CRT hardware UI.
 
 ---
 
-## ⚡ System Features
+## 🚀 Key Features
 
-* **Netrunner Terminal UI:** A custom hardware-level TFT display featuring CRT scanlines, Matrix-green typography, and randomized screen-tear/glitch effects during execution.
-* **Wireless Uplink (Web UI):** Serves a captive web portal over a local AP to upload, paste, or delete payloads.
-* **LittleFS Storage:** Payloads are safely compiled and stored in the device's onboard flash memory.
-* **Plug & Play Injection:** Emulates a standard USB Keyboard to the target host. No drivers required.
-* **DuckyScript 1.0 Parser:** Natively understands classic Rubber Ducky syntax (delays, strings, chords, and modifier keys).
+### 🌐 Dual-Mode Networking (AP + STA)
+
+* **Station Mode (STA):** Automatically attempts to connect to a predefined mobile hotspot or local network for internet-enabled attacks.
+* **Access Point (AP) Fallback:** Always broadcasts its own isolated `RogueDuck_Sync` network so you are never locked out of the command center.
+
+### 📱 Mobile-First Web Command Center
+
+A stealthy, dark-mode web application optimized for fat-thumb operation on smartphones.
+
+* **Over-The-Air Uploads:** Push `.txt` DuckyScript payloads directly to internal storage (LittleFS).
+* **Live Editor:** Write, edit, and save payloads directly from your mobile browser.
+* **Cloud Vector Deployment:** Paste a raw URL (e.g., GitHub Raw, Pastebin) to fetch and execute a payload entirely in RAM, leaving no trace on the device's physical storage.
+* **Remote Execution:** Trigger any stored payload instantly from the web app.
+* **Panic Wipe:** A dedicated killswitch at the bottom of the UI that formats the LittleFS partition, permanently wiping all stored payloads in seconds.
+
+### 📟 Hardware Interface
+
+* **Cyberpunk CRT Aesthetic:** Simulated CRT scanlines, dynamic glitch effects during injection, and dynamic IP rendering.
+* **Pocket Lock & Battery Saver:** Long-press the side button to dim the screen and disable the physical injection buttons, preventing accidental misfires in your pocket.
+* **Live Telemetry:** Real-time battery percentage monitoring directly on the header.
 
 ---
 
 ## 🛠️ Hardware Requirements
 
-* 1x **M5Stack Stick S3** (or StickC Plus2)
-* 1x USB-C Data Cable
+* **Device:** M5Stack StickS3 (ESP32-S3)
+* **Connection:** USB-C (For flashing and HID emulation)
 
 ---
 
-## 🚀 Installation & Flashing
+## ⚙️ Installation & Flashing
 
-### Dependencies
-Ensure you have the ESP32 board manager installed in your Arduino IDE or PlatformIO environment. You will need the following libraries:
-* `M5Unified` (by M5Stack)
-* `LittleFS` (built-in)
-* `WiFi` & `WebServer` (built-in)
-* `USB` & `USBHIDKeyboard` (built-in for ESP32-S3)
+### 1. Dependencies
 
-### Setup Instructions
-1. Clone this repository:
-   ```bash
-   git clone [https://github.com/yourusername/RogueDuck.git](https://github.com/yourusername/RogueDuck.git)
+Ensure you have the following libraries installed in the Arduino IDE:
 
+* `M5Unified`
+* `LittleFS`
+* `USB`
+* `USBHIDKeyboard`
+* `HTTPClient`
+* `WebServer`
 
+### 2. Configuration
 
-2. Open the `RogueDuck.ino` file in your Arduino IDE.
-3. In the `Tools` menu, configure your board parameters:
-* **Board:** ESP32S3 Dev Module (or exact M5Stack Stick S3 equivalent)
-* **USB Mode:** Hardware CDC and JTAG
-* **USB CDC On Boot:** Enabled
+Before compiling, open `ROGUEDUCK.cpp` and update the Wi-Fi credentials at the top of the script:
 
+```cpp
+const char* AP_SSID = "RogueDuck_Sync";
+const char* AP_PASS = "12345678"; 
 
-4. Compile and upload to your device.
-
-*(Note: A pre-compiled binary is also available on the M5Burner marketplace.)*
-
----
-
-## 📖 Deployment Guide
-
-### 1. Establish the Uplink (Payload Management)
-
-Provide power to the Stick S3. The screen will initialize the `[ ROGUEDUCK ]` boot sequence.
-
-* Search for local Wi-Fi networks on your smartphone or secondary device.
-* Connect to **`RogueDuck_Sync`** (Default Password: `12345678`).
-* Open a browser and navigate to the gateway: `http://192.168.4.1`.
-* Use the web portal to upload `.txt` scripts, paste raw code, or purge old vectors.
-
-### 2. Execution Phase
-
-Plug the Stick S3 into your target hardware.
-
-* Use **`BTN_B`** (Side Button) to scroll through your stored `.txt` files.
-* Press **`BTN_A`** (Main Front Button) to execute.
-* The screen will glitch red, lock the terminal, and instantly inject the keystrokes.
-
----
-## ⚙️ Payload Generation
-
-Don't want to write your payloads by hand? We built a web-based tool to make vector creation effortless. 
-
-Use the official **[DuckyScript Generator](https://www.ethicalhackersden.org/p/ducky-script-generator.html)** to quickly build, format, and copy your payloads. Once generated, simply connect to the RogueDuck Uplink and paste the script directly into the hardware buffer.
-
-## ⌨️ Scripting Syntax
-
-RogueDuck uses standard DuckyScript 1.0. Create simple text files (`.txt`) using the following syntax:
-
-```text
-REM Example Stealth Payload
-DEFAULT_DELAY 50
-GUI r
-DELAY 500
-STRING cmd
-ENTER
-DELAY 500
-STRING echo "We are in."
-ENTER
+const char* STA_SSID = "YOUR_HOTSPOT_NAME";
+const char* STA_PASS = "YOUR_HOTSPOT_PASSWORD";
 
 ```
 
-*Supported Modifiers:* `GUI`, `WINDOWS`, `CTRL`, `SHIFT`, `ALT`, `ENTER`, `TAB`, `ESC`, `BACKSPACE`, `UP`, `DOWN`, `LEFT`, `RIGHT`, `F1-F12`, and standard repeating chords (e.g., `CTRL-ALT-DEL`).
+### 3. CRITICAL: Partition Scheme
+
+Because this firmware utilizes heavy web assets, dual Wi-Fi, and HTTP clients, it exceeds the default 1.2MB ESP32 application limit.
+
+* In Arduino IDE, navigate to **Tools > Partition Scheme**.
+* Select **Huge APP (3MB No OTA/1MB SPIFFS)** or **No OTA (2MB APP/2MB SPIFFS)**.
+* Compile and Upload.
 
 ---
 
-## 🌐 Community & Tutorials
+## 🕹️ Operation Guide
 
-RogueDuck was developed as part of the **Ethical Hackers Den**.
+### Physical Controls
 
-We are systematically building an online platform dedicated to hardware hacking, embedded electronics, and ethical security research. For deep-dive technical articles on ESP32 microcontrollers, M5Stack deployments, and more cybersecurity projects, join the community:
+* **Button A (Front):** `INJECT PAYLOAD` - Executes the currently selected payload.
+* **Button B (Side Short-Click):** `SCROLL` - Cycles through stored payloads.
+* **Button B (Side Long-Press):** `POCKET LOCK` - Toggles the battery-saver dim mode and locks the physical execution buttons.
 
-* **Blog & Tutorials:** [[blog link here](https://www.ethicalhackersden.org/)]
-* **Discord Community:** [[Discord invite link here](https://discord.gg/AcAWqND87G)]
+### Web Controls
+
+1. Connect your smartphone/PC to either the `RogueDuck_Sync` Wi-Fi network OR the shared Hotspot network.
+2. Check the M5Stack's physical screen for the assigned **IP Address**.
+3. Enter the IP into your web browser.
+4. Use the GUI to upload, edit, fire, or wipe payloads.
 
 ---
 
-## ⚠️ Disclaimer
+## 📜 Supported DuckyScript 1.0 Syntax
 
-**Educational Use Only.** RogueDuck is designed strictly for system administration, authorized penetration testing, and educational purposes. Never deploy payloads on hardware or networks you do not own or do not have explicit, written permission to audit. The developers and the Ethical Hackers Den assume no liability for misuse.
+The internal parser processes standard US-English layout DuckyScript 1.0 commands:
+
+* `STRING` / `STRINGLN`
+* `DELAY` / `DEFAULT_DELAY`
+* `GUI` / `WINDOWS` / `COMMAND`
+* `CTRL`, `SHIFT`, `ALT` (and combos like `CTRL-ALT-DELETE`)
+* `ENTER`, `TAB`, `SPACE`, `ESC`, `UP`, `DOWN`, `LEFT`, `RIGHT`
+* `F1` - `F12`
+* `REM` (Comments)
+* `REPEAT`
+
+---
+
+## 🛡️ Credits & Disclaimer
+
+**V2 UI & Hardware Ops by [@M5RogueOps**](https://github.com/M5RogueOps) **Powered by [Ethical Hackers Den**](https://www.ethicalhackersden.org)
+
+*This tool is designed for educational purposes, authorized penetration testing, and personal research. The developers assume no liability and are not responsible for any misuse or damage caused by this firmware. Only operate on networks and devices you have explicit permission to test.*
 
 ```
 
