@@ -119,7 +119,7 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 ## 🛡️ Credits & Disclaimer
 
-**V2 UI & Hardware Ops by [@M5RogueOps**](https://github.com/M5RogueOps) **Powered by [Ethical Hackers Den**](https://www.ethicalhackersden.org)
+**ROGUEDUCK V2 by [@M5RogueOps**](https://github.com/M5RogueOps) **Powered by [Ethical Hackers Den**](https://www.ethicalhackersden.org)
 
 *This tool is designed for educational purposes, authorized penetration testing, and personal research. The developers assume no liability and are not responsible for any misuse or damage caused by this firmware. Only operate on networks and devices you have explicit permission to test.*
 
