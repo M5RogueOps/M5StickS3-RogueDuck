@@ -125,6 +125,7 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 ```
 
+
 ```
 [![Hardware](https://img.shields.io/badge/Hardware-M5Stack_Stick_S3-orange)](https://docs.m5stack.com/en/core/Sticks3)
 [![Framework](https://img.shields.io/badge/Framework-Arduino_Core-blue)](https://www.arduino.cc/)
