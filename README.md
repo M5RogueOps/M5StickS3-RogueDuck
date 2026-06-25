@@ -115,8 +115,11 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 * `REM` (Comments)
 * `REPEAT`
 
-TO-DO: getting as close as we can to a full duckyscript 3.0 as possible.
+
 ---
+## TO-DO LIST
+* get as close as we can to a full duckyscript 3.0 as possible.
+
 
 ## 🛡️ Credits & Disclaimer
 
