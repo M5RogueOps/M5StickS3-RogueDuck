@@ -7,6 +7,15 @@ To control the device from anywhere in the world (over mobile data or a complete
 ## Prerequisites
 You need a "Companion Device" (a laptop, a Raspberry Pi, or a mini PC) connected to the same Wi-Fi network as the M5StickS3.
 
+### ⚡ Why a Companion Device is Required
+
+The M5StickS3 features a lightweight, embedded Wi-Fi network stack running on bare metal. While it handles local TCP/IP traffic perfectly, it lacks the system architecture, OS-level dependencies, and processing overhead required to run native binary tunneling agents like `cloudflared` or `ngrok`.
+
+The companion device bridges this gap by acting as a **Local Reverse-Proxy Gateway**:
+
+```text
+[ Internet ] ──(Secure WAN Tunnel)──> [ Companion Device ] ──(Local LAN HTTP)──> [ M5StickS3 ]
+
 You also need one of the following command-line tools installed on the companion device:
 * **Cloudflared (Recommended):** Free, no account required. ([Download](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/))
 * **Ngrok:** Requires a free account and auth token. ([Download](https://ngrok.com/download))
