@@ -23,6 +23,8 @@ ROGUEDUCK V2 is a custom, tactical firmware that transforms the M5Stack StickS3 
 
 * **Station Mode (STA):** Automatically attempts to connect to a predefined mobile hotspot or local network for internet-enabled attacks.
 * **Access Point (AP) Fallback:** Always broadcasts its own isolated `RogueDuck_Sync` network so you are never locked out of the command center.
+* **Captive Portal:** A built-in DNS server in AP mode intercepts network traffic, forcing the connecting device's web browser to automatically pop up the Command Center.
+* **Global Cloud Tunneling:** Includes a Python companion script (`rogueduck_tunnel.py`) to bridge the local M5Stack to the internet via Cloudflare or Ngrok, allowing you to control the device and trigger payloads from anywhere in the world.
 
 ### 📱 Mobile-First Web Command Center
 
@@ -39,7 +41,6 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 * **Cyberpunk CRT Aesthetic:** Simulated CRT scanlines, dynamic glitch effects during injection, and dynamic IP rendering.
 * **Pocket Lock & Battery Saver:** Long-press the side button to dim the screen and disable the physical injection buttons, preventing accidental misfires in your pocket.
 * **Live Telemetry:** Real-time battery percentage monitoring directly on the header.
-
 ---
 
 ## 🛠️ Hardware Requirements
