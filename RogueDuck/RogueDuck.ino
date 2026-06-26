@@ -203,7 +203,7 @@ String buildIndexHtml() {
 
         // --- DEVELOPMENT CREDITS (REQUIRED TO REMAIN INTACT) ---
         "<div class=\"footer\">"
-        "ROGUEDUCK V2 BY <a href=\"https://github.com/M5RogueOps\" target=\"_blank\">@M5ROGUEOPS</a><br><br>"
+        "ROGUEDUCK V2.1 BY <a href=\"https://github.com/M5RogueOps\" target=\"_blank\">@M5ROGUEOPS</a><br><br>"
         "POWERED BY <a href=\"https://www.ethicalhackersden.org\" target=\"_blank\">ETHICAL HACKERS DEN</a>"
         "</div>"
 
@@ -264,7 +264,7 @@ void drawUI() {
     M5.Display.setTextSize(1.0, 1.5); // 1 wide 1.5 font height
     M5.Display.setTextColor(CYBER_GREEN);
     M5.Display.setCursor(2, 2);
-    M5.Display.print("[ROGUEDUCK V2]");
+    M5.Display.print("[ROGUEDUCK V2.1]");
     
     // --- BATTERY STATUS ---
     M5.Display.setTextSize(1);
@@ -285,12 +285,12 @@ void drawUI() {
     // --- NEW LARGE IP DISPLAY ---
     M5.Display.setTextSize(1.0, 1.5); // 1 wide 1.5 font height
     M5.Display.setTextColor(TFT_WHITE);
-    M5.Display.setCursor(95, 2); // shifted position
+    M5.Display.setCursor(101, 2); // shifted position
     
    if (WiFi.status() == WL_CONNECTED) {
-        M5.Display.print("IP:" + WiFi.localIP().toString());
+        M5.Display.print("IP " + WiFi.localIP().toString());
     } else {
-        M5.Display.print("IP:" + WiFi.softAPIP().toString());
+        M5.Display.print("IP " + WiFi.softAPIP().toString());
     }
     
     // Reset text size back to normal for the rest of the UI

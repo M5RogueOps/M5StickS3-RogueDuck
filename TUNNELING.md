@@ -1,4 +1,4 @@
-# 🌍 ROGUEDUCK - Global Cloud Tunneling
+# 🌍 ROGUEDUCK V2.1 - Global Cloud Tunneling
 
 By default, the ROGUEDUCK Web Command Center is only accessible if you are on the same local Wi-Fi network (or connected to the device's AP). 
 

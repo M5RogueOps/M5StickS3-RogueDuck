@@ -1,6 +1,6 @@
 
 
-# 🦆 ROGUEDUCK V2
+# 🦆 ROGUEDUCK V2.1 (Now Be Free My Precious)
 **Advanced HID Payload Injector for M5Stack StickS3**
 
 ```text
@@ -13,7 +13,7 @@
 
 ```
 
-ROGUEDUCK V2 is a custom, tactical firmware that transforms the M5Stack StickS3 into a covert, dual-network BadUSB tool. It features a complete mobile-first web interface, on-the-fly DuckyScript parsing, cloud-payload fetching, and a cyberpunk CRT hardware UI.
+ROGUEDUCK V2.1 is a custom, tactical firmware that transforms the M5Stack StickS3 into a covert, dual-network BadUSB tool. It features a complete mobile-first web interface, on-the-fly DuckyScript parsing, cloud-payload fetching, and a cyberpunk CRT hardware UI.
 
 ---
 
@@ -35,6 +35,8 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 * **Cloud Vector Deployment:** Paste a raw URL (e.g., GitHub Raw, Pastebin) to fetch and execute a payload entirely in RAM, leaving no trace on the device's physical storage.
 * **Remote Execution:** Trigger any stored payload instantly from the web app.
 * **Panic Wipe:** A dedicated killswitch at the bottom of the UI that formats the LittleFS partition, permanently wiping all stored payloads in seconds.
+* **Tactical Data Exfiltration:** Securely transmit stolen data (passwords, keys, tokens) from the target machine directly to the RogueDuck via `Invoke-RestMethod`. Stored loot is centralized, viewable in the web UI, and manageable in real-time.
+* **Loot Management:** A dedicated dashboard to view, ignore, or perform a mass wipe of exfiltrated data files with a single click.
 
 ### 📟 Hardware Interface
 
@@ -123,12 +125,12 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 * [✅] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
 * [✅ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
 * [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
-* [ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
+* [✅ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
 
 
 ## 🛡️ Credits & Disclaimer
 
-**ROGUEDUCK V2 by [@M5RogueOps**](https://github.com/M5RogueOps) **Powered by [Ethical Hackers Den**](https://www.ethicalhackersden.org)
+**ROGUEDUCK V2.1 by [@M5RogueOps**](https://github.com/M5RogueOps) **Powered by [Ethical Hackers Den**](https://www.ethicalhackersden.org)
 
 *This tool is designed for educational purposes, authorized penetration testing, and personal research. The developers assume no liability and are not responsible for any misuse or damage caused by this firmware. Only operate on networks and devices you have explicit permission to test.*
 
