@@ -1,0 +1,5 @@
+REM This script Opens Ethical Hackers Den
+GUI r
+DELAY 500
+STRING cmd /c start https://www.ethicalhackersden.org
+ENTER
