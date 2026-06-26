@@ -2,7 +2,7 @@
 
 Here is your complete, updated `README.md` containing the new image grids, updated setup instructions reflecting the dynamic Wi-Fi credentials page, and the final version metrics.
 
-```markdown
+
 # 🦆 ROGUEDUCK V2.1 (Now Be Free My Precious)
 **Advanced USB HID Remote Wi-Fi Ducky Payload Injector for M5Stack StickS3**
 
@@ -176,4 +176,3 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 ```
 
-```
