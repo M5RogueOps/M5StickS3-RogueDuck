@@ -30,6 +30,7 @@
 #include "USB.h"
 #include "USBHIDKeyboard.h"
 #include <HTTPClient.h>
+#include <DNSServer.h>
 
 // --- Cyberpunk CRT Colors (RGB565 format) ---
 #define CYBER_GREEN M5.Display.color565(0, 255, 65)
@@ -40,10 +41,12 @@
 const char* AP_SSID = "RogueDuck_Sync";
 const char* AP_PASS = "12345678"; // Must be at least 8 chars
 // Add these for Station (STA) Mode
-const char* STA_SSID = "YOUR_WIFI_SSID_HERE"; // add your ssid
-const char* STA_PASS = "YOUR_WIFI_PASSWORD_HERE"; // add your wifi networks password
+const char* STA_SSID = "ADD_YOUR_SSID_HERE"; // add your ssid
+const char* STA_PASS = "ADD_YOUR_SSID_PASSWORD"; // add your wifi networks password
 
 WebServer server(80);
+const byte DNS_PORT = 53;
+DNSServer dnsServer;
 USBHIDKeyboard Keyboard;
 File fsUploadFile;
 
@@ -756,6 +759,14 @@ void handleCloudDrop() {
     // Fire the payload
     fetchAndFireCloud(targetUrl);
 }
+
+// captive portals make things easier
+void handleCaptivePortal() {
+    // Redirect all unknown traffic to the root of the M5Stick's IP
+    server.sendHeader("Location", String("http://") + server.client().localIP().toString(), true);
+    server.send(302, "text/plain", ""); // 302 means "Found, redirecting..."
+    server.client().stop();
+}
 void setup() {
     // 1. WAKE ME UP FIRST!
     // Initialize the M5Unified hardware config
@@ -789,6 +800,10 @@ void setup() {
     // Always start the AP as a fallback/secondary access method
     WiFi.softAP(AP_SSID, AP_PASS);
 
+    // --- NEW: START CAPTIVE PORTAL DNS ---
+    // The "*" means route ALL web traffic to the ESP32's IP
+    dnsServer.start(DNS_PORT, "*", WiFi.softAPIP()); 
+
     // 5. Configure the Web Server routes
     server.on("/", HTTP_GET, handleRoot);
     server.on("/upload", HTTP_POST, []() {
@@ -801,6 +816,11 @@ void setup() {
     server.on("/read", HTTP_GET, handleRead); // <--- lets us edit the files
     server.on("/wipe", HTTP_POST, handleWipe); // <--- function to remotly wipe device
     server.on("/cloud", HTTP_POST, handleCloudDrop); // <--- Ads function to get payloads from raw text files hosted online
+    
+    // --- NEW: CATCH-ALL ROUTE ---
+    // If the phone asks for captive.apple.com, this triggers the redirect
+    server.onNotFound(handleCaptivePortal); 
+    
     server.begin();
 
     // 6. Arm the BadUSB capabilities!
@@ -810,9 +830,9 @@ void setup() {
     // 7. Draw the initial interface
     drawUI();
 }
-
 void loop() {
     // Keep the web server responsive
+    dnsServer.processNextRequest(); // <--- for captive portal
     server.handleClient();
     
     // CRITICAL: Keep my physical buttons polled and updated
@@ -838,7 +858,7 @@ void loop() {
             drawUI();
         }
 
-        // FIRE THE PAYLOAD with the front button (BtnA)
+        // INJECT THE PAYLOAD with the front button (BtnA)
         if (M5.BtnA.wasPressed() && !payloadFiles.empty() && !isSending) {
             sendSelectedPayload();
         }
