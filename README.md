@@ -1,7 +1,10 @@
 
 
+Here is your complete, updated `README.md` containing the new image grids, updated setup instructions reflecting the dynamic Wi-Fi credentials page, and the final version metrics.
+
+```markdown
 # 🦆 ROGUEDUCK V2.1 (Now Be Free My Precious)
-**Advanced HID Payload Injector for M5Stack StickS3**
+**Advanced USB HID Remote Wi-Fi Ducky Payload Injector for M5Stack StickS3**
 
 ```text
  ██████╗  ██████╗  ██████╗ ██╗   ██╗███████╗██████╗ ██╗   ██╗ ██████╗██╗  ██╗
@@ -9,7 +12,7 @@
  ██████╔╝██║   ██║██║  ███╗██║   ██║█████╗  ██║  ██║██║   ██║██║     █████╔╝ 
  ██╔══██╗██║   ██║██║   ██║██║   ██║██╔══╝  ██║  ██║██║   ██║██║     ██╔═██╗ 
  ██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝███████╗██████╔╝╚██████╔╝╚██████╗██║  ██╗
- ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
+ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝  ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
 
 ```
 
@@ -43,6 +46,43 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 * **Cyberpunk CRT Aesthetic:** Simulated CRT scanlines, dynamic glitch effects during injection, and dynamic IP rendering.
 * **Pocket Lock & Battery Saver:** Long-press the side button to dim the screen and disable the physical injection buttons, preventing accidental misfires in your pocket.
 * **Live Telemetry:** Real-time battery percentage monitoring directly on the header.
+
+---
+
+## 📸 Interface Overview
+
+<div align="center">
+  <table>
+    <tr>
+      <th align="center">Device Hardware</th>
+      <th align="center">File & Cloud Operations</th>
+    </tr>
+    <tr>
+      <td><img src="1481.jpg" width="300" alt="Hardware UI" /></td>
+      <td><img src="1483.jpg" width="300" alt="Payload Management" /></td>
+    </tr>
+    <tr>
+      <td align="center"><i>Cyberpunk CRT Hardware UI</i></td>
+      <td align="center"><i>Cloud Vector & Local Storage</i></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th align="center">Payload Creation</th>
+      <th align="center">Tactical Exfiltration</th>
+    </tr>
+    <tr>
+      <td><img src="1482.jpg" width="300" alt="Web Editor" /></td>
+      <td><img src="1484.jpg" width="300" alt="Exfiltration Dashboard" /></td>
+    </tr>
+    <tr>
+      <td align="center"><i>OTA DuckyScript Editor</i></td>
+      <td align="center"><i>Loot Dashboard & Network Setup</i></td>
+    </tr>
+  </table>
+</div>
+
 ---
 
 ## 🛠️ Hardware Requirements
@@ -65,19 +105,14 @@ Ensure you have the following libraries installed in the Arduino IDE:
 * `HTTPClient`
 * `WebServer`
 
-### 2. Configuration
+### 2. Configuration & First-Boot
 
-Before compiling, open `ROGUEDUCK.ino` and update the Wi-Fi credentials at the top of the script:
+Unlike previous builds, Wi-Fi Station configurations no longer need to be hard-coded into the source code before compilation.
 
-```cpp
-const char* AP_SSID = "RogueDuck_Sync";
-const char* AP_PASS = "12345678"; <--- Change This to what ever you want
-
-Connect To AP Visit Web App UI by visiting IP http://192.168.4.1/ 
-or clicking via wifi and letting the captive portal open the page for you.
-in here we can add our wifi credentials 
-
-```
+1. Flash the firmware using the instructions below.
+2. Power on the device. It will spin up the `RogueDuck_Sync` Access Point automatically.
+3. Connect your smartphone to the network and allow the Captive Portal to load, or visit `http://192.168.4.1/`.
+4. Scroll to the **Wi-Fi Configuration** section at the bottom, input your permanent hotspot credentials, and select **SAVE & REBOOT**.
 
 ### 3. CRITICAL: Partition Scheme
 
@@ -99,10 +134,10 @@ Because this firmware utilizes heavy web assets, dual Wi-Fi, and HTTP clients, i
 
 ### Web Controls
 
-1. Connect your smartphone/PC to either the `RogueDuck_Sync` Wi-Fi network OR the shared Hotspot network.
+1. Connect your smartphone/PC to either the `RogueDuck_Sync` Wi-Fi network OR the configured Hotspot network.
 2. Check the M5StickS3's physical screen for the assigned **IP Address**.
 3. Enter the IP into your web browser.
-4. Use the GUI to upload, edit, fire, or wipe payloads.
+4. Use the GUI to upload, edit, fire, view loot, or wipe payloads.
 
 ---
 
@@ -119,15 +154,17 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 * `REM` (Comments)
 * `REPEAT`
 
-
 ---
+
 ## 📋 To-Do / Roadmap
 
-* [✅] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
-* [✅ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
+* [x] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
+* [x] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
+* [x] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
 * [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
-* [✅ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
+* [ ] **Onboard SD Card Storage:** Integrate support for external SD hardware configurations.
 
+---
 
 ## 🛡️ Credits & Disclaimer
 
@@ -135,10 +172,8 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 *This tool is designed for educational purposes, authorized penetration testing, and personal research. The developers assume no liability and are not responsible for any misuse or damage caused by this firmware. Only operate on networks and devices you have explicit permission to test.*
 
+---
+
 ```
 
-
 ```
-[![Hardware](https://img.shields.io/badge/Hardware-M5Stack_Stick_S3-orange)](https://docs.m5stack.com/en/core/Sticks3)
-[![Framework](https://img.shields.io/badge/Framework-Arduino_Core-blue)](https://www.arduino.cc/)
-[![Community](https://img.shields.io/badge/Community-Ethical_Hackers_Den-green)](#community)
