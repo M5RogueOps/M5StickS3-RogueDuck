@@ -53,8 +53,8 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
       <th align="center">File & Cloud Operations</th>
     </tr>
     <tr>
-      <td><img src="1481.jpg" width="300" alt="Hardware UI" /></td>
-      <td><img src="1483.jpg" width="300" alt="Payload Management" /></td>
+      <td><img src="img/1481.jpg" width="300" alt="Hardware UI" /></td>
+      <td><img src="img/1483.jpg" width="300" alt="Payload Management" /></td>
     </tr>
     <tr>
       <td align="center"><i>Cyberpunk CRT Hardware UI</i></td>
@@ -68,8 +68,8 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
       <th align="center">Tactical Exfiltration</th>
     </tr>
     <tr>
-      <td><img src="1482.jpg" width="300" alt="Web Editor" /></td>
-      <td><img src="1484.jpg" width="300" alt="Exfiltration Dashboard" /></td>
+      <td><img src="img/1482.jpg" width="300" alt="Web Editor" /></td>
+      <td><img src="img/1484.jpg" width="300" alt="Exfiltration Dashboard" /></td>
     </tr>
     <tr>
       <td align="center"><i>OTA DuckyScript Editor</i></td>
@@ -82,7 +82,7 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 
 ## 🛠️ Hardware Requirements
 
-* **Device:** M5Stack StickS3 (ESP32-S3)
+* **Device:** M5Stack StickS3 (ESP32-S3) - Product Docs/Purchase:[M5 Stack StickS3](https://www.ethicalhackersden.org/p/go.html?url=https://shop.m5stack.com/products/m5sticks3-esp32s3-mini-iot-dev-kit) 
 * **Connection:** USB-C (For flashing and HID emulation)
 
 ---
