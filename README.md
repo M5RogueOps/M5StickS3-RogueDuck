@@ -125,7 +125,7 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 * [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
 * [ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
 * [ ] **Status LED Integration:** Utilize the M5Stack's built-in RGB LED for visual status cues (e.g., Breathing Blue = AP Mode, Solid Green = STA Connected, Flashing Red = Injecting).
-* [ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
+* [✅ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
 
 
 ## 🛡️ Credits & Disclaimer
