@@ -15,7 +15,7 @@ The companion device bridges this gap by acting as a **Local Reverse-Proxy Gatew
 
 ```text
 [ Internet ] ──(Secure WAN Tunnel)──> [ Companion Device ] ──(Local LAN HTTP)──> [ M5StickS3 ]
-
+```
 You also need one of the following command-line tools installed on the companion device:
 * **Cloudflared (Recommended):** Free, no account required. ([Download](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/))
 * **Ngrok:** Requires a free account and auth token. ([Download](https://ngrok.com/download))
