@@ -64,14 +64,14 @@ Ensure you have the following libraries installed in the Arduino IDE:
 
 ### 2. Configuration
 
-Before compiling, open `ROGUEDUCK.cpp` and update the Wi-Fi credentials at the top of the script:
+Before compiling, open `ROGUEDUCK.ino` and update the Wi-Fi credentials at the top of the script:
 
 ```cpp
 const char* AP_SSID = "RogueDuck_Sync";
-const char* AP_PASS = "12345678"; 
+const char* AP_PASS = "12345678"; <--- Change This to what ever you want
 
-const char* STA_SSID = "YOUR_HOTSPOT_NAME";
-const char* STA_PASS = "YOUR_HOTSPOT_PASSWORD";
+const char* STA_SSID = "YOUR_HOTSPOT_NAME"; <--- your SSID 
+const char* STA_PASS = "YOUR_HOTSPOT_PASSWORD"; <--- Your SSID Password
 
 ```
 
@@ -120,7 +120,7 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 ## 📋 To-Do / Roadmap
 
 * [ ] **DuckyScript 3.0 Support:** Upgrade the parser to handle variables, logic, and `IF/THEN` statements.
-* [ ] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
+* [✅] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
 * [ ] **BLE Keyboard Emulation:** Add the ability to inject payloads wirelessly via Bluetooth Low Energy instead of just physical USB.
 * [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
 * [ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
