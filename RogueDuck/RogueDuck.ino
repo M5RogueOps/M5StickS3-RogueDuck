@@ -36,6 +36,29 @@
 #include "USBHIDKeyboard.h"
 #include <HTTPClient.h>
 #include <DNSServer.h>
+#include <Preferences.h>
+Preferences prefs;
+
+void saveWifi(String ssid, String pass) {
+    prefs.begin("wifi_config", false);
+    prefs.putString("ssid", ssid);
+    prefs.putString("password", pass);
+    prefs.end();
+}
+
+String getSSID() {
+    prefs.begin("wifi_config", true);
+    String ssid = prefs.getString("ssid", "");
+    prefs.end();
+    return ssid;
+}
+
+String getPass() {
+    prefs.begin("wifi_config", true);
+    String pass = prefs.getString("password", "");
+    prefs.end();
+    return pass;
+}
 
 // --- Cyberpunk CRT Colors (RGB565 format) ---
 #define CYBER_GREEN M5.Display.color565(0, 255, 65)
@@ -45,9 +68,7 @@
 // --- Configuration ---
 const char* AP_SSID = "RogueDuck_Sync";
 const char* AP_PASS = "12345678"; // Must be at least 8 chars - You could change this (optional)
-// Add these for Station (STA) Mode
-const char* STA_SSID = "ADD_YOUR_SSID_HERE"; // add your ssid
-const char* STA_PASS = "ADD_YOUR_SSID_PASSWORD"; // add your wifi networks password
+
 
 WebServer server(80);
 const byte DNS_PORT = 53;
@@ -94,6 +115,7 @@ String buildIndexHtml() {
         "body{margin:0;padding:12px;background:#000;color:#0f0;-webkit-tap-highlight-color:transparent;}"
         "h2{text-align:center;margin:0 0 15px 0;font-size:1.3rem;text-transform:uppercase;border-bottom:1px solid #0f0;padding-bottom:10px;text-shadow:0 0 5px #0f0;}"
         ".container{background:#050505;padding:16px;border-radius:8px;border:1px solid #0f0;box-shadow:0 0 12px rgba(0,255,0,0.15);margin-bottom:20px;width:100%;}"
+        "input[type=text],input[type=password]{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;background:#111;color:#0f0;border:1px solid #0f0;}button{width:100%;padding:12px;margin-top:10px;cursor:pointer;}"
         "input[type=file],input[type=text],textarea{width:100%;padding:12px;font-size:16px;border-radius:4px;border:1px solid #333;background:#000;color:#0f0;margin-bottom:12px;}"
         "input[type=text]:focus,textarea:focus{border-color:#0f0;outline:none;box-shadow:0 0 5px #0f0;}"
         "input[type=file]::file-selector-button{background:#0f0;color:#000;border:none;padding:8px 12px;border-radius:4px;font-weight:bold;margin-right:10px;}"
@@ -200,6 +222,12 @@ String buildIndexHtml() {
         "<form method=\"POST\" action=\"/clearloot\" onsubmit=\"return confirm('Wipe all looted data?');\">"
         "<button class=\"del\" style=\"background:#333; color:#aaa; border:1px solid #555; padding:10px; width:100%;\" type=\"submit\">[ CLEAR LOOT ]</button>"
         "</form></div></div>"
+
+       "<form action=\"/settings\" method=\"POST\">"
+"<input type=\"text\" name=\"ssid\" placeholder=\"SSID\" required>"
+"<input type=\"password\" name=\"pass\" placeholder=\"Password\">"
+"<button type=\"submit\">SAVE & REBOOT</button>"
+"</form>"
 
         // --- DEVELOPMENT CREDITS (REQUIRED TO REMAIN INTACT) ---
         "<div class=\"footer\">"
@@ -341,6 +369,14 @@ void drawUI() {
 // ---------------------------------------------------------------
 void handleRoot() {
     server.send(200, "text/html", buildIndexHtml());
+}
+void handleSettings() {
+    if (server.hasArg("ssid") && server.hasArg("pass")) {
+        saveWifi(server.arg("ssid"), server.arg("pass"));
+        server.send(200, "text/html", "<h2>Settings Saved! Rebooting...</h2>");
+        delay(1000);
+        ESP.restart();
+    }
 }
 void handleViewLoot() {
     if (!LittleFS.exists("/loot.txt")) {
@@ -839,23 +875,30 @@ void setup() {
     }
     refreshFileList();
 
-    // 4. Spin up the Rogue Access Point
-    // --- DUAL MODE WIFI SETUP ---
-    WiFi.mode(WIFI_AP_STA); // Enable both Access Point and Station modes
-    WiFi.begin(STA_SSID, STA_PASS);
+  // 4. Spin up the Rogue Access Point
+    // --- DYNAMIC DUAL MODE WIFI SETUP ---
+    String storedSSID = getSSID();
     
-    int attempts = 0;
-    while (WiFi.status() != WL_CONNECTED && attempts < 20) { // Try for 10 seconds
-        delay(500);
-        attempts++;
+    // Set to dual mode if we have credentials, otherwise just AP mode
+    if (storedSSID != "") {
+        WiFi.mode(WIFI_AP_STA);
+        WiFi.begin(storedSSID.c_str(), getPass().c_str());
+        
+        // Brief wait to see if it connects to the target network
+        int attempts = 0;
+        while (WiFi.status() != WL_CONNECTED && attempts < 10) { 
+            delay(500);
+            attempts++;
+        }
+    } else {
+        WiFi.mode(WIFI_AP);
     }
 
-    // Always start the AP as a fallback/secondary access method
+    // Always start the AP as the fallback/management interface
     WiFi.softAP(AP_SSID, AP_PASS);
 
-    // --- NEW: START CAPTIVE PORTAL DNS ---
-    // The "*" means route ALL web traffic to the ESP32's IP
-    dnsServer.start(DNS_PORT, "*", WiFi.softAPIP()); 
+    // --- START CAPTIVE PORTAL DNS ---
+    dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
 
     // 5. Configure the Web Server routes
     server.on("/", HTTP_GET, handleRoot);
@@ -872,7 +915,8 @@ void setup() {
     server.on("/loot", HTTP_POST, handleLoot); // <--- this helps with Exfiltration 
     server.on("/clearloot", HTTP_POST, handleClearLoot); // <--- This helps us delete the stolen exfiltraion data
     server.on("/viewloot", HTTP_GET, handleViewLoot); //<--- helps view the stolen data from exfiltraion data from loot.txt
-    
+    server.on("/settings", HTTP_POST, handleSettings);
+
     // --- NEW: CATCH-ALL ROUTE ---
     // If the phone asks for captive.apple.com, this triggers the redirect
     server.onNotFound(handleCaptivePortal); 
