@@ -73,8 +73,7 @@ Before compiling, open `ROGUEDUCK.ino` and update the Wi-Fi credentials at the t
 const char* AP_SSID = "RogueDuck_Sync";
 const char* AP_PASS = "12345678"; <--- Change This to what ever you want
 
-const char* STA_SSID = "YOUR_HOTSPOT_NAME"; <--- your SSID 
-const char* STA_PASS = "YOUR_HOTSPOT_PASSWORD"; <--- Your SSID Password
+Connect To AP Visit Web App UI by visiting IP http://192.168.4.1/ or clicking via wifi and letting the captive portal open the page for you. in here we can add our wifi credentials 
 
 ```
 
