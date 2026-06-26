@@ -1,5 +1,5 @@
 # 🦆 ROGUEDUCK V2.1
-**Stealth HID Payload Injector for M5Stack StickS3**
+**Advanced USB HID Remote Wi-Fi Ducky Payload Injector for M5Stack StickS3**
 
 ROGUEDUCK V2.1 transforms the M5Stack StickS3 into a covert, tactical BadUSB tool featuring a mobile-optimized web command center, on-the-fly DuckyScript parsing, cloud-payload fetching, and a cyberpunk CRT hardware UI.
 
@@ -16,7 +16,6 @@ ROGUEDUCK V2.1 transforms the M5Stack StickS3 into a covert, tactical BadUSB too
 * **Cyberpunk CRT UI:** Simulated scanlines, dynamic glitch injection effects, real-time battery monitoring, and dynamic IP display.
 
 ## ⚙️ Quick Start
-1. Update `STA_SSID` and `STA_PASS` in `RogueDuckV2.ino` with your mobile hotspot credentials.
 2. Set your Arduino IDE Partition Scheme to **Huge APP (3MB No OTA)**.
 3. Flash to your M5Stack StickS3.
 4. Connect your phone to your hotspot (or the `RogueDuck_Sync` AP) and navigate to the IP address displayed on the M5Stack screen.
