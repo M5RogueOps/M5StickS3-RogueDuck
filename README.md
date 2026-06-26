@@ -82,7 +82,7 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 
 ## 🛠️ Hardware Requirements
 
-* **Device:** M5Stack StickS3 (ESP32-S3) - Product Docs/Purchase:[M5 Stack StickS3](https://www.ethicalhackersden.org/p/go.html?url=https://shop.m5stack.com/products/m5sticks3-esp32s3-mini-iot-dev-kit) 
+* **Device:**  M5M5Stack StickS3 - Product Docs/Purchase:  [M5Stack StickS3 (ESP32-S3)](https://www.ethicalhackersden.org/p/go.html?url=https://shop.m5stack.com/products/m5sticks3-esp32s3-mini-iot-dev-kit) 
 * **Connection:** USB-C (For flashing and HID emulation)
 
 ---
