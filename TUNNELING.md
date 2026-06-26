@@ -25,7 +25,7 @@ python3 rogueduck_tunnel.py --ip <M5StickS3_IP> --tool <cloudflared|ngrok>
 
 Here is exactly how you would deploy this in the real world using Cloudflare (which is free and doesn't require an account).
 
-Step 1: The Local Connection
+## Step 1: The Local Connection
 
 Turn on your mobile phone's Wi-Fi Hotspot.
 
@@ -35,7 +35,7 @@ Turn on your Laptop (the Companion Device) and connect it to the same mobile Hot
 
 Look at the M5StickS3's physical screen and write down the IP address it displays (e.g., 172.20.10.5).
 
-Step 2: Install Cloudflared on the Laptop
+## Step 2: Install Cloudflared on the Laptop
 
 On your laptop, download the Cloudflared command-line tool. (If you are on Windows, you download cloudflared-windows-amd64.exe and rename it to cloudflared.exe).
 
@@ -43,7 +43,7 @@ Make sure Python is installed on your laptop.
 
 Put the rogueduck_tunnel.py script in the same folder as cloudflared.exe.
 
-Step 3: Build the Tunnel
+## Step 3: Build the Tunnel
 
 Open your laptop's Command Prompt or Terminal in that folder.
 
@@ -53,7 +53,7 @@ Bash
 python rogueduck_tunnel.py --ip 172.20.10.5 --tool cloudflared
 The script will output some text. Look for a line that contains a random URL like: https://rapid-pencil-network.trycloudflare.com.
 
-Step 4: Global Control
+## Step 4: Global Control
 
 You can now leave your laptop open in your car or backpack (as long as it stays connected to the hotspot).
 
