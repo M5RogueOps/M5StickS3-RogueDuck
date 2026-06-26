@@ -97,7 +97,7 @@ Because this firmware utilizes heavy web assets, dual Wi-Fi, and HTTP clients, i
 ### Web Controls
 
 1. Connect your smartphone/PC to either the `RogueDuck_Sync` Wi-Fi network OR the shared Hotspot network.
-2. Check the M5Stack's physical screen for the assigned **IP Address**.
+2. Check the M5StickS3's physical screen for the assigned **IP Address**.
 3. Enter the IP into your web browser.
 4. Use the GUI to upload, edit, fire, or wipe payloads.
 
