@@ -120,13 +120,10 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 ---
 ## 📋 To-Do / Roadmap
 
-* [ ] **DuckyScript 3.0 Support:** Upgrade the parser to handle variables, logic, and `IF/THEN` statements.
 * [✅] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
-* [ ] **BLE Keyboard Emulation:** Add the ability to inject payloads wirelessly via Bluetooth Low Energy instead of just physical USB.
+* [✅ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
 * [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
 * [ ] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
-* [ ] **Status LED Integration:** Utilize the M5Stack's built-in RGB LED for visual status cues (e.g., Breathing Blue = AP Mode, Solid Green = STA Connected, Flashing Red = Injecting).
-* [✅ ] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
 
 
 ## 🛡️ Credits & Disclaimer

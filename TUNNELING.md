@@ -16,8 +16,10 @@ You also need one of the following command-line tools installed on the companion
 The `rogueduck_tunnel.py` script automates the tunnel creation. It requires Python 3.
 
 **Usage:**
+
 ```bash
 python3 rogueduck_tunnel.py --ip <M5StickS3_IP> --tool <cloudflared|ngrok>
+```
 
 ## The Step-by-Step Process
 
