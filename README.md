@@ -112,8 +112,8 @@ Unlike previous builds, Wi-Fi Station configurations no longer need to be hard-c
 
 1. Flash the firmware using the instructions below.
 2. Power on the device. It will spin up the `RogueDuck_Sync` Access Point automatically.
-3. Connect your smartphone to the network and allow the Captive Portal to load, or visit `http://192.168.4.1/`.
-4. Scroll to the **Wi-Fi Configuration** section at the bottom, input your permanent hotspot credentials, and select **SAVE & REBOOT**.
+3. Connect your smartphone to the network `defult password: 12345678` and allow the Captive Portal to load, or visit `http://192.168.4.1/`.
+4. Scroll to the **Wi-Fi Configuration** section at the bottom, input your permanent hotspot credentials Eg. Your mobile hotspot. and select **SAVE & REBOOT**.
 
 ### 3. CRITICAL: Partition Scheme
 
