@@ -92,7 +92,7 @@ A stealthy, dark-mode web application optimized for fat-thumb operation on smart
 If you Don't want to mess with code, and enjoy its beauty, you can just download the latest .bin files.
 
 * `M5Stack M5Burner - [View Download And Docs Here!](https://docs.m5stack.com/en/download)`
-* `M5Launcher By  bmorcelli - Github: [View Source Here!](https://github.com/bmorcelli/Launcher)  - Web: [Flash Firmware Here!](https://bmorcelli.github.io/Launcher/)
+* `M5Launcher By  bmorcelli - Github: [View Source Here!](https://github.com/bmorcelli/Launcher)  - Web: [Flash Firmware Here!](https://bmorcelli.github.io/Launcher/)`
 
 
 ### 1. Dependencies
