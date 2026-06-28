@@ -157,13 +157,18 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 ---
 
-## 📋 To-Do / Roadmap
+📋 To-Do / Roadmap
+[x] Captive Portal: Implement a DNS server in AP mode so connecting to the RogueDuck_Sync Wi-Fi automatically opens the Web UI.
 
-* [x] **Captive Portal:** Implement a DNS server in AP mode so connecting to the `RogueDuck_Sync` Wi-Fi automatically opens the Web UI.
-* [x] **Tunneling Companion Guide:** Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
-* [x] **Data Exfiltration:** Add a listener endpoint to capture keystrokes or data from the target machine and save it to `LittleFS`.
-* [ ] **International Keyboard Layouts:** Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
-* [ ] **Onboard SD Card Storage:** Integrate support for external SD hardware configurations.
+[x] Tunneling Companion Guide: Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
+
+[x] Data Exfiltration: Add a listener endpoint to capture keystrokes or data from the target machine and save it to LittleFS.
+
+[ ] International Keyboard Layouts: Expand character mapping beyond US English to support UK, DE, FR, and ES layouts.
+
+[ ] Onboard SD Card Storage: Integrate support for external SD hardware configurations.
+
+[ ] Stealth Mode (Screen Masking): Implement a "Set-and-Forget" UI toggle to replace active terminal visuals with a deceptive, low-power "Office/Admin" screen saver to ensure physical concealment during deployments.
 
 ---
 
