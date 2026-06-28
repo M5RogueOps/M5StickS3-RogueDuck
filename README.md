@@ -157,7 +157,8 @@ The internal parser processes standard US-English layout DuckyScript 1.0 command
 
 ---
 
-📋 To-Do / Roadmap
+## 📋 To-Do / Roadmap
+
 [x] Captive Portal: Implement a DNS server in AP mode so connecting to the RogueDuck_Sync Wi-Fi automatically opens the Web UI.
 
 [x] Tunneling Companion Guide: Add documentation and a companion Python script for setting up Ngrok/Cloudflare reverse tunneling for global access.
